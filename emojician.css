@@ -1,0 +1,292 @@
+/**
+ * Some stuff
+ * Mainly taken from Spectre.css v0.5.9 | MIT License | github.com/picturepan2/spectre
+ */
+
+.emojician-container *,
+.emojician-container *::before,
+.emojician-container *::after {
+    box-sizing: inherit;
+}
+.emojician-container a {
+    background-color:transparent;
+    -webkit-text-decoration-skip:objects;
+    cursor:pointer;
+    outline:none;
+    text-decoration:none;
+}
+.emojician-container a:active,
+.emojician-container a:hover {
+    outline-width: 0;
+}
+
+/* tabs */
+
+.emojician-header {
+    align-items: center;
+    border-bottom: .05rem solid #dadee4;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: .2rem 0 .15rem 0;
+    padding:0;
+}
+.emojician-header .tab-item {
+    margin-top: 0;
+    -ms-flex: 1 0 0;
+    flex: 1 0 0;
+    text-align: center;
+}
+.emojician-header .tab-item a {
+    border-bottom: .1rem solid transparent;
+    color: inherit;
+    display: block;
+    margin: 0;
+    padding: .4rem .2rem .3rem .2rem;
+    text-decoration: none;
+}
+.emojician-header .tab-item a:focus,
+.emojician-header .tab-item a:hover {
+    border-bottom-color: #aaa;
+}
+.emojician-header .tab-item a.active {
+    border-bottom-color: #282828;
+    color: #282828;
+}
+
+/* tooltip */
+
+.emojician-header .tooltip {
+    position: relative;
+}
+.emojician-header .tooltip::after {
+    background: rgba(48, 55, 66, .95);
+    border-radius: .1rem;
+    bottom: 100%;
+    color: #fff;
+    content: attr(data-tooltip);
+    display: block;
+    font-size: .9rem;
+    left: 50%;
+    max-width: 320px;
+    opacity: 0;
+    overflow: hidden;
+    padding: .2rem .4rem;
+    pointer-events: none;
+    position: absolute;
+    text-overflow: ellipsis;
+    transform: translate(-50%, .4rem);
+    transition: opacity .2s, transform .2s;
+    white-space: pre;
+    z-index: 300;
+}
+.emojician-header .tooltip:focus::after,
+.emojician-header .tooltip:hover::after {
+    opacity: 1;
+    transform: translate(-50%, .2rem);
+}
+
+/* popover & popover-click */
+
+.emojician-popover,
+.emojician-popover-click {
+    display: inline-block;
+    position: relative;
+}
+.emojician-popover-container {
+    left: 50%;
+    opacity: 0;
+    padding: .4rem;
+    position: absolute;
+    top: 0;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform .2s;
+    z-index: 300;
+}
+.emojician-popover *:focus + .emojician-popover-container,
+.emojician-popover:hover .emojician-popover-container,
+.emojician-popover-click *:focus + .emojician-popover-container,
+.emojician-popover-click .emojician-popover-container:hover,
+.emojician-popover-click .emojician-popover-container:focus-within {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -100%) scale(1);
+}
+.emojician-popover.emojician-popover-right .emojician-popover-container,
+.emojician-popover-click.emojician-popover-click-right .emojician-popover-container {
+    left: 100%;
+    top: 50%;
+}
+.emojician-popover.emojician-popover-right *:focus + .emojician-popover-container,
+.emojician-popover.emojician-popover-right:hover .emojician-popover-container,
+.emojician-popover-click.emojician-popover-click-right *:focus + .emojician-popover-container,
+.emojician-popover-click.emojician-popover-click-right .emojician-popover-container:hover,
+.emojician-popover-click.emojician-popover-click-right .emojician-popover-container:focus-within {
+    transform: translate(0, -50%) scale(1);
+}
+.emojician-popover.emojician-popover-bottom .emojician-popover-container,
+.emojician-popover-click.emojician-popover-click-bottom .emojician-popover-container {
+    left: 50%;
+    top: 100%;
+}
+.emojician-popover.emojician-popover-bottom *:focus + .emojician-popover-container,
+.emojician-popover.emojician-popover-bottom:hover .emojician-popover-container,
+.emojician-popover-click.emojician-popover-click-bottom *:focus + .emojician-popover-container,
+.emojician-popover-click.emojician-popover-click-bottom .emojician-popover-container:hover,
+.emojician-popover-click.emojician-popover-click-bottom .emojician-popover-container:focus-within {
+    transform: translate(-50%, 0) scale(1);
+}
+.emojician-popover.emojician-popover-left .emojician-popover-container,
+.emojician-popover-click.emojician-popover-click-left .emojician-popover-container {
+    left: 0;
+    top: 50%;
+}
+.emojician-popover.emojician-popover-left *:focus + .emojician-popover-container,
+.emojician-popover.emojician-popover-left:hover .emojician-popover-container,
+.emojician-popover-click.emojician-popover-click-left *:focus + .emojician-popover-container,
+.emojician-popover-click.emojician-popover-click-left .emojician-popover-container:hover,
+.emojician-popover-click.emojician-popover-click-left .emojician-popover-container:focus-within {
+    transform: translate(-100%, -50%) scale(1);
+}
+
+/* loading */
+
+@keyframes emojician-loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.emojician-body .loading {
+    color: transparent !important;
+    height: 150px;
+    pointer-events: none;
+    position: relative;
+}
+.emojician-body .loading::after {
+    animation: emojician-loading 500ms infinite linear;
+    background: transparent;
+    border: .1rem solid #282828;
+    border-radius: 50%;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    content: "";
+    display: block;
+    height: 30px;
+    left: 50%;
+    margin-left: -.4rem;
+    margin-top: -.4rem;
+    opacity: 1;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    z-index: 296;
+}
+
+
+/**
+ * emojician.css
+ */
+
+.emojician-container {
+    display:inline-block;
+    width: 300px;
+    padding: 0 5px;
+    border: .05rem solid #dadee4;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    box-sizing: border-box;
+    line-height: 1.5;
+    -webkit-tap-highlight-color: transparent;
+    background: #fff;
+    color: #3b4351;
+    text-rendering: optimizeLegibility;
+    box-shadow: 0 .2rem .5rem rgba(48, 55, 66, .3);
+    position: relative;
+    z-index: 295;
+}
+
+.emoji {
+    font-family:"Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji", Times, Symbola, Aegyptus, Code2000, Code2001, Code2002, Musica, serif, LastResort;
+    font-variant-emoji: emoji;
+}
+
+.emojician-header {
+    font-size: 16px;
+}
+
+.emojician-body {
+    height:200px;
+    overflow-y:scroll;
+    padding:0 ;
+}
+.emojician-body::-webkit-scrollbar {
+    width:10px;
+}
+.emojician-body::-webkit-scrollbar-track {
+    background:transparent;
+}
+.emojician-body::-webkit-scrollbar-thumb {
+    background-color:#aaa;
+    border-radius:20px;
+    border:2px solid white;
+}
+.emojician-body a {
+    display:inline-block;
+    width:25px;
+    height:28px;
+    vertical-align:middle;
+    overflow:hidden;
+    margin:1px;
+}
+.emojician-body a .emoji {
+    display:inline-block;
+    width:25px;
+    font-size:20px;
+}
+
+.emojician-footer {
+    width:auto;
+    height:25px;
+    line-height:25px;
+    margin:.2rem 0;
+}
+.emojician-footer .emojinput {
+    height:25px;
+    width:100%;
+    max-width: 100%;
+    font-family: inherit;
+    font-size: .9em;
+    line-height: inherit;
+    margin: 0;
+    vertical-align: top;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #fff;
+    background-image: none;
+    border: .05rem solid #bcc3ce;
+    border-radius: .1rem;
+    color: #bcc3ce;
+    display: block;
+    outline: none;
+    padding: .05rem .3rem;
+    position: relative;
+    transition: background .2s, border .2s, color .2s;
+}
+.emojician-footer .emojinput:focus {
+    border-color: #909090;
+    box-shadow: 0 0 0 .1rem rgba(87, 85, 217, .2);
+    color: #282828;
+}
+.emojician-footer .emojinput:-ms-input-placeholder,
+.emojician-footer .emojinput::-ms-input-placeholder,
+.emojician-footer .emojinput::placeholder {
+    color: #bcc3ce;
+}

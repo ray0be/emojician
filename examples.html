@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Emojician</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧙‍♂️</text></svg>">
+
+    <!-- Spectre.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.9/spectre.min.css" integrity="sha512-9RIcp1f4CE6dEuYX9085tXaEbYd1ap04d2Av1ub/dwuT33WbfbHStDdQ+shKrp5wzZzleh5DOg+7ABSnaQP/nQ==" crossorigin="anonymous" />
+
+    <!-- Include the Emojician CSS styles -->
+    <link rel="stylesheet" href="emojician.css">
+
+    <style>
+        body {
+            background: rgb(232,232,232);
+            background: linear-gradient(90deg, rgba(245,245,245,1) 0%, rgba(199,199,199,1) 100%);
+        }
+        h1 {
+            text-align:center;
+            font-size:50px;
+            padding:0;
+            margin:20px 0 10px;
+        }
+        #root {
+            width:650px;
+            padding:20px;
+            margin:auto;
+            margin-bottom:20px;
+            border:1px dashed gray;
+        }
+        hr {
+            clear:both;
+            margin:40px 0;
+        }
+        .links {
+            text-align:center;
+            margin-bottom:20px;
+        }
+        .links a, .links a:visited {
+            font-size:25px;
+            text-decoration: none;
+        }
+        .links a:hover, .links a:focus, .links a:active {
+            color:black;
+            text-decoration: none;
+        }
+        .sideblock {
+            width:250px;
+            float:right;
+            font-size:180px;
+        }
+    </style>
+</head>
+<body>
+    <h1><span class="emoji">🧙‍♂️</span> Emojician</h1>
+    <div class="links">
+        <a href="https://github.com/ray0be/emojician" target="blank">&rarr; Github &larr;</a>
+    </div>
+
+    <div id="root">
+        <h2>Example#1 : Block</h2>
+        <div class="sideblock emoji" id="picked-emoji"></div>
+        <emojician display="block" @picked="ex1_picked_emoji"></emojician>
+
+        <hr>
+
+        <h2>Example#2 : Hover</h2>
+        <emojician display="hover" direction="right" @picked="ex2_picked_emoji">
+            <button class="btn">Just move your mouse over me</button>
+        </emojician>
+
+        <hr>
+
+        <h2>Example#3 : Click</h2>
+        <div class="input-group">
+            <input type="text" class="form-input" id="textinput" placeholder="Enter message...">
+            <emojician display="click" @picked="ex3_picked_emoji">
+                <button class="btn btn-primary input-group-btn emoji">🙂</button>
+            </emojician>
+        </div>
+    </div>
+
+    <div class="links">
+        <a href="http://ray0.be">ray0.be</a> &bullet;
+        <a href="https://github.com/ray0be/emojician" target="blank">Github</a>
+    </div>
+
+    <!-- Include Vue.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js" integrity="sha512-BKbSR+cfyxLdMAsE0naLReFSLg8/pjbgfxHh/k/kUC82Hy7r6HtR5hLhobaln2gcTvzkyyehrdREdjpsQwy2Jw==" crossorigin="anonymous"></script>
+
+    <!-- Include the Emojician JS script -->
+    <script src="emojician.js"></script>
+
+    <script>
+    var app = new Vue({
+        el: '#root',
+        components: {
+            /* Insert Emojician as a component dependency */
+            'emojician': Emojician
+        },
+        methods: {
+            ex1_picked_emoji: function(emoji) {
+                document.getElementById('picked-emoji').innerHTML = emoji.emoji;
+            },
+            ex2_picked_emoji: function(emoji) {
+                var msg = 'You have picked this emoji : ';
+                console.log(msg, emoji);
+                alert(msg + emoji.emoji + '\n(see console logs for more information)');
+            },
+            ex3_picked_emoji: function(emoji) {
+                document.getElementById('textinput').value += emoji.emoji;
+            },
+        }
+    });
+    </script>
+</body>
+</html>
